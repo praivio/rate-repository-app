@@ -1,19 +1,20 @@
-import React from 'react';
-import { View, StyleSheet, TouchableWithoutFeedback } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, Pressable } from 'react-native';
 import Text from './Text';
 import theme from '../theme';
 
-const AppBarTab = (props) => {
-  const onPress = () => {};
+const AppBarTab = () => {
+  const [label, setLabel] = useState('Repositories');
+
+  // Just to see clicking works...
+  const onPress = () => {
+    setLabel(label + 'o');
+  };
 
   return (
-    <View style={styles.container}>
-      <TouchableWithoutFeedback onPress={onPress}>
-        <View style={styles.button}>
-          <Text style={styles.text}>AppBarTab</Text>
-        </View>
-      </TouchableWithoutFeedback>
-    </View>
+    <Pressable onPress={onPress}>
+      <Text style={styles.text}>{label}</Text>
+    </Pressable>
   );
 };
 
@@ -21,11 +22,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    paddingHorizontal: 10,
-  },
-  button: {
-    alignItems: 'flex-start',
     padding: 10,
+    minHeight: 20,
   },
   text: {
     color: theme.colors.textSecondary,
